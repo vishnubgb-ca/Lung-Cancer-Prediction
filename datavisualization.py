@@ -30,9 +30,9 @@ def data_visualization():
             # plt.show()
         elif col != 'Level':
             dataset[col] != 'Level'
-            list=[]
-            list.append(col)
-            df = dataset.groupby(by=list).size().reset_index(name="counts")
+            lst=[]
+            lst.append(col)
+            df = dataset.groupby(by=lst).size().reset_index(name="counts")
             count+=1
             fig = px.bar(df, x=col, y="counts",color=col)
             fig.update_layout(template='plotly_dark')
