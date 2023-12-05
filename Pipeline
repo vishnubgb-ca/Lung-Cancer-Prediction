@@ -1,0 +1,40 @@
+pipeline{
+    agent any
+
+    stages{
+       
+        stage("Data Extraction"){
+            steps{
+                sh 'python3 Load_Data.py'
+            }
+        }
+        stage("Data Analysis"){
+            steps{
+                sh 'python3 Data_Analysis.py'
+            }
+        }
+        stage("Data Preprocessing"){
+            steps{
+                sh 'python3 Data_Preprocessing.py'
+            }
+        }
+        stage("Data Visualization"){
+            steps{
+                sh 'python3 datavisualization.py'
+            }
+        }
+        stage("Feature Engineering"){
+            steps{
+                sh 'python3 Feature_Engineering.py'
+            }
+        }
+        
+        
+    }
+    post{
+       
+        always {
+            archiveArtifacts artifacts: 'cleaned.csv', onlyIfSuccessful: true
+        }
+    }
+}
