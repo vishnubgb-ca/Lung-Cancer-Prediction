@@ -34,7 +34,7 @@ def data_visualization():
             lst.append(col)
             df = dataset.groupby(by=lst).size().reset_index(name="counts")
             count+=1
-            fig = px.bar(df, x=col, y="counts")
+            fig = px.bar(df, x=col, y="counts",color=col)
             fig.update_layout(template='plotly_dark')
             fig.update_xaxes(showgrid=False,zeroline=False)
             fig.update_yaxes(showgrid=False,zeroline=False)
