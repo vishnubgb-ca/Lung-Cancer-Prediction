@@ -7,11 +7,13 @@ from matplotlib.backends.backend_pdf import PdfPages
 import numpy as np
 import plotly.figure_factory as ff
 import plotly.express as px
+import string
 
 def data_visualization():
     dataset = data_preprocessing()
     print(dataset.head())
     count=0
+    letters = list(string.ascii_lowercase)
     dataset = dataset.drop(["patient_id","index"],axis=1)
     numerical_features = dataset.select_dtypes("number").columns
     for col in dataset.columns:
@@ -23,7 +25,7 @@ def data_visualization():
             fig.update_xaxes(showgrid=False,zeroline=False)
             fig.update_yaxes(showgrid=False,zeroline=False)
             # fig.show()
-            fig.write_image(f"{count}_dist_{col}.jpg")
+            fig.write_image(f"{letters[count]}_dist_{col}.jpg")
             # sns.distplot(x=dataset[col][1:])
             # plt.show()
         elif col != 'Level':
@@ -37,7 +39,7 @@ def data_visualization():
             fig.update_xaxes(showgrid=False,zeroline=False)
             fig.update_yaxes(showgrid=False,zeroline=False)
             # fig.show()
-            fig.write_image(f"{count}_bar_{col}.jpg")
+            fig.write_image(f"{letters[count]}_bar_{col}.jpg")
             # fig,ax = plt.subplots(1,1, figsize = (5,4))
             # sns.countplot(x=dataset[col][1:])
             # plt.show()
@@ -54,7 +56,7 @@ def data_visualization():
     fig.update_layout(template='plotly_dark')
     count += 1
     # fig.show()
-    fig.write_image(f"{count}_heatmap.jpg")
+    fig.write_image(f"{letters[count]}_heatmap.jpg")
     # plt.show()
     return dataset
 
