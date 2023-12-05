@@ -11,28 +11,33 @@ import plotly.express as px
 def data_visualization():
     dataset = data_preprocessing()
     print(dataset.head())
-    count='a'
+    count=0
     dataset = dataset.drop(["patient_id","index"],axis=1)
     numerical_features = dataset.select_dtypes("number").columns
     for col in dataset.columns:
         if (len(dataset[col].unique()) > 5) and (col != 'Level'):
             # fig,ax = plt.subplots(1,1, figsize=(5,4))
             count+=1
-            fig = ff.create_distplot([dataset[col][1:].values,group_labels=[col])
+            fig = ff.create_distplot([dataset[col].values],group_labels=[col])
             fig.update_layout(template='plotly_dark')
             fig.update_xaxes(showgrid=False,zeroline=False)
             fig.update_yaxes(showgrid=False,zeroline=False)
-            fig.write_image(f"{count}_dist_{col}.jpg")
+            fig.show()
+            #fig.write_image(f"{count}_dist_{col}.jpg")
             # sns.distplot(x=dataset[col][1:])
             # plt.show()
         elif col != 'Level':
             dataset[col] != 'Level'
+            list=[]
+            list.append(col)
+            df = dataset.groupby(by=list).size().reset_index(name="counts")
             count+=1
-            fig = px.bar(dataset[1:], x=col, y="counts",color=col)
+            fig = px.bar(df, x=col, y="counts",color=col)
             fig.update_layout(template='plotly_dark')
             fig.update_xaxes(showgrid=False,zeroline=False)
             fig.update_yaxes(showgrid=False,zeroline=False)
-            fig.write_image(f"{count}_bar_{col}.jpg")
+            fig.show()
+            # fig.write_image(f"{count}_bar_{col}.jpg")
             # fig,ax = plt.subplots(1,1, figsize = (5,4))
             # sns.countplot(x=dataset[col][1:])
             # plt.show()
@@ -48,7 +53,8 @@ def data_visualization():
     fig = ff.create_annotated_heatmap(z,x=y,y=y,annotation_text=z_text,colorscale=px.colors.sequential.Cividis_r,showscale=True)
     fig.update_layout(template='plotly_dark')
     count += 1
-    fig.write_image(f"{count}_heatmap.jpg")
+    fig.show()
+    # fig.write_image(f"{count}_heatmap.jpg")
     # plt.show()
     return dataset
 
