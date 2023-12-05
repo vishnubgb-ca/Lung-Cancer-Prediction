@@ -22,8 +22,8 @@ def data_visualization():
             fig.update_layout(template='plotly_dark')
             fig.update_xaxes(showgrid=False,zeroline=False)
             fig.update_yaxes(showgrid=False,zeroline=False)
-            fig.show()
-            #fig.write_image(f"{count}_dist_{col}.jpg")
+            # fig.show()
+            fig.write_image(f"{count}_dist_{col}.jpg")
             # sns.distplot(x=dataset[col][1:])
             # plt.show()
         elif col != 'Level':
@@ -36,8 +36,8 @@ def data_visualization():
             fig.update_layout(template='plotly_dark')
             fig.update_xaxes(showgrid=False,zeroline=False)
             fig.update_yaxes(showgrid=False,zeroline=False)
-            fig.show()
-            # fig.write_image(f"{count}_bar_{col}.jpg")
+            # fig.show()
+            fig.write_image(f"{count}_bar_{col}.jpg")
             # fig,ax = plt.subplots(1,1, figsize = (5,4))
             # sns.countplot(x=dataset[col][1:])
             # plt.show()
@@ -53,8 +53,8 @@ def data_visualization():
     fig = ff.create_annotated_heatmap(z,x=y,y=y,annotation_text=z_text,colorscale=px.colors.sequential.Cividis_r,showscale=True)
     fig.update_layout(template='plotly_dark')
     count += 1
-    fig.show()
-    # fig.write_image(f"{count}_heatmap.jpg")
+    # fig.show()
+    fig.write_image(f"{count}_heatmap.jpg")
     # plt.show()
     return dataset
 
