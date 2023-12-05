@@ -9,6 +9,6 @@ def feature_engineering():
     print(dataset.head())
     # dataset = dataset.drop(["patient_id", "index"], axis =1)    
     # print(dataset.head())
-    dataset.to_csv('cleaned.csv')
+    dataset.to_csv('cleaned.csv',index=False)
     return dataset
 feature_engineering()
