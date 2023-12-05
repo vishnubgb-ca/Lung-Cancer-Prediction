@@ -34,7 +34,7 @@ def data_visualization():
             lst.append(col)
             df = dataset.groupby(by=lst).size().reset_index(name="counts")
             count+=1
-            fig = px.bar(df, x=col, y="counts",color=col)
+            fig = px.bar(df, x=col, y="counts")
             fig.update_layout(template='plotly_dark')
             fig.update_xaxes(showgrid=False,zeroline=False)
             fig.update_yaxes(showgrid=False,zeroline=False)
@@ -56,7 +56,7 @@ def data_visualization():
     fig.update_layout(template='plotly_dark')
     count += 1
     # fig.show()
-    fig.write_image(f"{letters[count]}_heatmap.jpg")
+    fig.write_image(f"{letters[count]}_heatmap.jpg",width=1920, height=1080)
     # plt.show()
     return dataset
 
